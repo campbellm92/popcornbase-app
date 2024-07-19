@@ -3,23 +3,30 @@ const axios = require("axios");
 
 const TMDB_KEY = process.env.TMDB_KEY;
 
-const options = {
-  method: "GET",
-  url: `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&page=1&sort_by=popularity.desc&api_key=${TMDB_KEY}`,
-  headers: {
-    accept: "application/json",
-  },
-};
+// const options = {
+//   method: "GET",
+//   url: ,
+//   headers: {
+//     accept: "application/json",
+//   },
+// };
 
-async function fetchMovies() {
+async function fetchMovies(minRating, maxRating) {
+  const page = Math.floor(Math.random() * 500) + 1;
   try {
-    const res = await axios.request(options);
-    console.log(res.data);
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_KEY}&page=${page}&vote_average.gte=${minRating}&vote_average.lte=${maxRating}`
+    );
+    const data = res.data;
+    console.log(data);
+    const movies = data.results;
+    const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+    return randomMovie;
   } catch (err) {
     console.error(err);
   }
 }
 
-fetchMovies();
+console.log(fetchMovies(2, 3));
 
 module.exports = { fetchMovies };
