@@ -27,6 +27,4 @@ async function fetchMovies(minRating, maxRating) {
   }
 }
 
-console.log(fetchMovies(2, 3));
-
 module.exports = { fetchMovies };
