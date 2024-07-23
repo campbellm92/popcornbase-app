@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+:root {
+  --bs-headings: #fffbff;
+  --bs-text: #fffbff;
+  --bs-text-secondary: #ffffff;
+  --bs-buttons: #00b7ff;
+  --bs-links: #00b7ff;
+  --bs-warning: #ffc107;
+  --bs-info: #17a2b8;
+  --bs-light: #f8f9fa;
+  --bs-dark-primary: #121212;
+  --bs-dark-secondary: #202533;
+}
+
+body {
+  background-color: var(--bs-dark-primary);
+}
+
+h1 {
+  font-family: "Rubik", sans-serif;
+  color: var(--bs-headings);
+}
+
+h2 {
+  font-family: "Rubik", sans-serif;
+  color: var(--bs-headings);
+}
+
+p {
+  font-family: "Rubik", sans-serif;
+}
+
+a {
+  font-family: "Rubik", sans-serif;
+}
+
+button {
+  font-family: "Rubik", sans-serif;
+}
+
+.navbar-custom {
+  background-color: var(--bs-dark-primary);
+}
+
+.links-custom {
+  color: var(--bs-links);
+}
+
+.links-custom:hover {
+  color: var(--bs-text);
+}
+
+.logo-nav {
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.logo-nav:hover {
+  transform: scale(1.2);
+}
+
+.logo-hero {
+  width: 250px;
+}
+
+.p-custom {
+  color: var(--bs-text);
+}
+
+.form-container {
+  max-width: 300px;
+}
+
+.btn-container {
+  text-align: center;
+}
+
+.btn-outline-custom {
+  border-color: var(--bs-buttons);
+  color: var(--bs-text);
+}
+
+.btn-outline-custom:hover {
+  border-color: var(--bs-text);
+  color: var(--bs-buttons);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.content-container-custom {
+  background-color: var(--bs-dark-secondary);
+}
