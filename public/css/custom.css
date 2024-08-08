@@ -60,12 +60,21 @@ button {
   transform: scale(1.2);
 }
 
+/* Hero content */
+
 .logo-hero {
   width: 250px;
 }
 
 .p-custom {
   color: var(--bs-text);
+}
+
+/* app content */
+
+.app-content {
+  height: 100vh;
+  padding-top: 30px;
 }
 
 .form-container {
@@ -91,6 +100,13 @@ button {
   width: 100%;
 }
 
-.content-container-custom {
-  background-color: var(--bs-dark-secondary);
+/* app content - slide */
+
+/* #slideForm {
+  transition: transform 5s ease-in-out;
+  transform: translateX(0);
 }
+
+.form-slid-position {
+  transform: translateX(-100%);
+} */
