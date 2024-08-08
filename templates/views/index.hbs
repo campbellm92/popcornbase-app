@@ -32,11 +32,11 @@
             <form action="/" method="get">
                 <div class="mb-3">
                     <input type="number" class="form-control" id="minRating" name="minRating"
-                        placeholder="Enter a minimum rating" min="0" max="10" step="1" required>
+                        placeholder="Enter a minimum rating" min="0" max="10" step="0.1" required>
                 </div>
                 <div class="mb-3">
                     <input type="number" class="form-control" id="maxRating" name="maxRating"
-                        placeholder="Enter a maximum rating" min="0" max="10" step="1" required>
+                        placeholder="Enter a maximum rating" min="1" max="10" step="0.1" required>
                 </div>
                 <div class="btn-container">
                     <button type="submit" class="btn btn-outline-custom btn-block">Action!</button>
@@ -55,6 +55,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="/js/ratingsValueController.js"></script>
 </body>
 
 </html>
