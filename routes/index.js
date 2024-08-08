@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const fetchMovies = require("../handlers/movieHandler");
+const fetchMovies = require("../handlers/fetchMovies");
 
 router.get("/", async (req, res) => {
   const minRating = req.query.minRating;
