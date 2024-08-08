@@ -16,46 +16,70 @@
         {{>header}}
     </header>
 
+    <section class="hero">
+        <div class="container-fluid text-center mt-4">
+            <div class="row">
+                <h1>PopcornBase</h1>
+                <img class="logo-hero mx-auto d-block" src="/assets/mask-logo.svg" alt="logo">
+                <h2>Get random movie recommendations instantly 🍿</h2>
+                <p class="mt-4 p-custom">Specify a ratings range to discover B gems, classics or something in between
+                </p>
+            </div>
+        </div>
+    </section>
 
-    <div class="container-fluid text-center mt-4">
-        <div class="row">
-            <h1>PopcornBase</h1>
-            <img class="logo-hero mx-auto d-block" src="/assets/mask-logo.svg" alt="logo">
-            <h2>Get random movie recommendations instantly 🍿</h2>
-            <p class="mt-4 p-custom">Specify a ratings range to discover B gems, classics or something in between</p>
+
+    <section class="app-content">
+        <div class="container-fluid content-container-custom">
+            <div class="container form-container mt-5">
+                <form action="/" method="get">
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="minRating" name="minRating"
+                            placeholder="Enter a minimum rating" min="0" max="10" step="0.1" required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="maxRating" name="maxRating"
+                            placeholder="Enter a maximum rating" min="1" max="10" step="0.1" required>
+                    </div>
+                    <div class="btn-container">
+                        <button type="button" class="btn btn-outline-custom btn-block">Action!</button>
+                    </div>
+                </form>
+            </div>
         </div>
 
-    </div>
+        <div class="container-fluid results-container-custom">
 
-    <div class="container-fluid content-container-custom">
-        <div class="container form-container mt-5">
-            <form action="/" method="get">
-                <div class="mb-3">
-                    <input type="number" class="form-control" id="minRating" name="minRating"
-                        placeholder="Enter a minimum rating" min="0" max="10" step="0.1" required>
-                </div>
-                <div class="mb-3">
-                    <input type="number" class="form-control" id="maxRating" name="maxRating"
-                        placeholder="Enter a maximum rating" min="1" max="10" step="0.1" required>
-                </div>
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-outline-custom btn-block">Action!</button>
-                </div>
+            {{#if movie}}
+            <h3 class="text-center">Your movie recommendation:</h3>
+            <div class="card mx-auto" style="width: 18rem;">
+                <img src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="Movie poster">
+                <div class="card-body">
+                    <h5 class="card-title">{{movie.title}}
+                    </h5>
+                    <p class="card-text">{{movie.overview}}</p>
+                    <p class="card-text"><small class="text-muted">Rating: {{movie.vote_average}}</small></p>
 
-            </form>
-
+                </div>
+            </div>
+            {{else}}
+            <p class="text-center mt-4">No movie found. Please specify a valid rating range.</p>
+            {{/if}}
         </div>
-    </div>
+    </section>
 
 
 
-    </div>
+
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="/js/ratingsValueController.js"></script>
+    {{!--
+    <script src="/js/slideForm.js" defer></script> --}}
 </body>
 
 </html>
