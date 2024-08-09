@@ -9,7 +9,14 @@ router.get("/", async (req, res) => {
   if (minRating && maxRating) {
     try {
       const movie = await fetchMovies(minRating, maxRating);
-      res.status(200).render("index", { movie });
+      if (!movie) {
+        res.status(400).render("index", {
+          ratingRangeError:
+            "Sorry, we couldn't find any movies in that ratings range. Please try a different range.",
+        });
+      } else {
+        res.status(200).render("index", { movie });
+      }
     } catch (err) {
       console.error(err);
       res.status(500).render("index", { error: "Could not fetch movie." });
