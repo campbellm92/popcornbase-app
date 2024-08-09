@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
             "Sorry, we couldn't find any movies in that ratings range. Please try a different range.",
         });
       } else {
-        res.status(200).render("index", { movie });
+        res.status(200).json({ movie });
       }
     } catch (err) {
       console.error(err);
