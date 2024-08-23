@@ -11,9 +11,8 @@
 </head>
 
 <body>
-
     <header>
-        {{>header}}
+        {{> header}}
     </header>
 
     <section class="hero">
@@ -21,13 +20,12 @@
             <div class="row">
                 <h1>PopcornBase</h1>
                 <img class="logo-hero mx-auto d-block" src="/assets/mask-logo.svg" alt="logo">
-                <h2>Get random movie recommendations instantly 🍿</h2>
-                <p class="mt-4 p-custom">Specify a ratings range to discover B gems, classics or something in between
+                <h2>Get random movie recommendations instantly! 🍿</h2>
+                <p class="mt-4 p-custom">Specify a ratings range to discover B gems, classics or something in between.
                 </p>
             </div>
         </div>
     </section>
-
 
     <section class="app-content">
         <div class="container-fluid content-container-custom d-flex flex-column align-items-center">
@@ -51,17 +49,22 @@
                 <!-- Movie recommendation card will be rendered here -->
             </div>
         </div>
+
+
     </section>
 
 
 
 
+    {{> signup}}
+    {{> login}}
 
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <!-- Handler scripts -->
     <script src="/js/ratingsValueController.js"></script>
     <script src="/js/displayMovieResult.js" defer></script>
 </body>
