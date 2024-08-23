@@ -30,11 +30,11 @@ button {
   background-color: var(--bs-dark-primary);
 }
 
-.links-custom {
+.nav-link.links-custom {
   color: var(--bs-links);
 }
 
-.links-custom:hover {
+.nav-link.links-custom:hover {
   color: var(--bs-text);
 }
 
@@ -113,5 +113,33 @@ button {
 }
 
 .card-text {
+  color: var(--bs-dark-primary);
+}
+
+/* Sign up modal */
+
+.modal-content.custom {
+  background-color: var(--bs-dark-secondary);
+}
+
+.modal-header.custom {
+  border: none;
+}
+
+.modal-title.custom {
+  color: var(--bs-light);
+}
+
+.btn-close.custom {
+  filter: invert(92%) sepia(5%) saturate(97%) hue-rotate(179deg)
+    brightness(101%) contrast(85%);
+}
+
+.form-label.custom {
+  color: var(--bs-light);
+}
+
+.btn.sign-up-btn-custom {
+  background-color: var(--bs-buttons);
   color: var(--bs-dark-primary);
 }
