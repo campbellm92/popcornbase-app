@@ -19,3 +19,5 @@ async function verifyPassword(hash, password) {
 }
 
 module.exports = { hashPassword, verifyPassword };
+
+//salting done automatically with argon2
