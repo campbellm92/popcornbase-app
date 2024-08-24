@@ -1,10 +1,13 @@
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const { createUser, userExists } = require("../queries/userQueries");
 const { hashPassword } = require("../utils/passwordUtils");
-const pool = require("../config/db");
+const jwt = require("jsonwebtoken");
 
-router.post("/signup", async (req, res) => {
+const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET;
+
+router.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -29,6 +32,7 @@ router.post("/signup", async (req, res) => {
           "Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character.",
       });
     }
+
     const emailAlreadyInDB = await userExists(email);
     if (emailAlreadyInDB) {
       return res.status(400).render("signup", {
@@ -38,7 +42,23 @@ router.post("/signup", async (req, res) => {
     }
 
     const hashedPassword = await hashPassword(password);
-  } catch (error) {}
+
+    const result = await createUser(email, hashedPassword);
+
+    const token = jwt.sign(
+      { userId: result.insertId, email: email },
+      JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.status(200).json({ message: "User created successfully", token });
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("signup", {
+      generalError: "An unexpected error occurred. Please try again.",
+    });
+  }
 });
 
 /*
