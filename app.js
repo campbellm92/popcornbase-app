@@ -3,6 +3,7 @@ const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
 const indexRouter = require("./routes/index.js");
+const signupRouter = require("./routes/signup.js");
 
 const app = express();
 
@@ -18,5 +19,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Use the routers
 app.use("/", indexRouter);
+app.use("/signup", signupRouter);
 
 module.exports = app;
