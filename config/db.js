@@ -32,32 +32,4 @@ ergo, testing would entail PROJECT ROOT > node config/db.js
 
 */
 
-async function getUsers() {
-  const [rows] = await pool.query("SELECT * FROM users");
-  return rows;
-}
-
-async function getUser(id) {
-  const [row] = await pool.query(`SELECT * FROM users WHERE id =?`, [id]);
-  return row;
-}
-
-async function createUser(email, password) {
-  const result = await pool.query(
-    `INSERT INTO users (email, password)
-    VALUES (?, ?)`,
-    [email, password]
-  );
-  return result;
-}
-
-(async () => {
-  try {
-    const info = await createUser("example3@email.com", "G00G0036$"); // Await the result of the asynchronous function
-    console.log(info);
-  } catch (err) {
-    console.error("Error fetching user info:", err);
-  }
-})();
-
 module.exports = pool;
