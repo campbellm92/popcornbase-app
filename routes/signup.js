@@ -3,11 +3,12 @@ const express = require("express");
 const router = express.Router();
 const { createUser, userExists } = require("../queries/userQueries");
 const { hashPassword } = require("../utils/passwordUtils");
-const jwt = require("jsonwebtoken");
 
-const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET;
+router.get("/signup", (req, res) => {
+  res.render("signup");
+});
 
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -18,7 +19,7 @@ router.post("/", async (req, res) => {
     const passwordIsStrong = strongPasswordRegex.test(password);
 
     if (!email || !password) {
-      res.status(400).render("/signup", {
+      return res.status(400).render("signup", {
         requiredError:
           "A valid email address and password are required to proceed.",
       });
@@ -42,17 +43,13 @@ router.post("/", async (req, res) => {
     }
 
     const hashedPassword = await hashPassword(password);
+    await createUser(email, hashedPassword);
 
-    const result = await createUser(email, hashedPassword);
+    res.status(200).render("signup", { message: "User created successfully" });
 
-    const token = jwt.sign(
-      { userId: result.insertId, email: email },
-      JWT_SECRET,
-      {
-        expiresIn: "1h",
-      }
-    );
-    res.status(200).json({ message: "User created successfully", token });
+    // setTimeout(() => {
+    //   res.redirect("/");
+    // }, 3000);
   } catch (error) {
     console.error(error);
     res.status(500).render("signup", {
@@ -66,11 +63,11 @@ router.post("/", async (req, res) => {
 I need to: 
 > set up route for signup - router.post
 > build a query to check if email exists or not (select .. from) DONE
-> make sure email is correct format
-> if email doesn't exist, create new user (insert into)
-> check password strong enough
-> hash password
-> connect to jwt token
+> make sure email is correct format DONE
+> if email doesn't exist, create new user (insert into) DONE
+> check password strong enough DONE
+> hash password DONE
+> connect to jwt token DONE?
 */
 
 module.exports = router;
