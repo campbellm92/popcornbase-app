@@ -14,11 +14,14 @@ app.set("view engine", "hbs");
 app.set("views", viewsPath);
 hbs.registerPartials(partialsPath);
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Ensure that express can read static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Use the routers
 app.use("/", indexRouter);
-app.use("/signup", signupRouter);
+app.use("/", signupRouter);
 
 module.exports = app;
