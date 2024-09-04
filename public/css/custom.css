@@ -118,7 +118,7 @@ button {
 
 /* Sign up modal */
 
-.modal-content.custom {
+/* .modal-content.custom {
   background-color: var(--bs-dark-secondary);
 }
 
@@ -135,11 +135,33 @@ button {
     brightness(101%) contrast(85%);
 }
 
-.form-label.custom {
-  color: var(--bs-light);
+
+} */
+
+/* AUTH */
+.auth-page-poster {
+  border: 1px solid white;
+}
+
+.signup-title {
+  color: var(--bs-headings);
 }
 
 .btn.sign-up-btn-custom {
   background-color: var(--bs-buttons);
   color: var(--bs-dark-primary);
+}
+
+.btn.sign-up-btn-custom:hover {
+  border-color: var(--bs-buttons);
+  background-color: var(--bs-dark-primary);
+  color: var(--bs-text);
+}
+
+.error {
+  color: var(--bs-warning);
+}
+
+.auth-success-msg {
+  color: var(--bs-info);
 }
