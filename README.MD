@@ -1,16 +1,16 @@
 # PopcornBase
 
-Questa è popcorn base, un'app che offre raccomandazioni di film random in base a un rating minimo e massimo specificato.
+PopcornBase: a movie app that gives recommendations based on specified minimum and maximum ratings values.
 
 ## Tech
 
-Backend: **Node.JS** e **Express.js**.
+Backend: **Node.JS** and **Express.js**.
 
-Frontend: **Vanilla JS**, **Bootstrap e CSS**, **Handlebars**
+Frontend: **Vanilla JS**, **Bootstrap and CSS**, **Handlebars**
 
 ## TODO
 
 - sign up / log in / auth
-- utenti possono salvare i film di loro interesse
-- più parametri di ricerca (year, genre, etc)
-- styles per le carte
+- users should be able to save films they like
+- should create more parameters, e.g. searching based on year
+- improve styling for the recommendations
