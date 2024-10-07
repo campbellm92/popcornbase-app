@@ -143,16 +143,16 @@ button {
   border: 1px solid white;
 }
 
-.signup-title {
+.auth-title {
   color: var(--bs-headings);
 }
 
-.btn.sign-up-btn-custom {
+.btn.auth-btn-custom {
   background-color: var(--bs-buttons);
   color: var(--bs-dark-primary);
 }
 
-.btn.sign-up-btn-custom:hover {
+.btn.auth-btn-custom:hover {
   border-color: var(--bs-buttons);
   background-color: var(--bs-dark-primary);
   color: var(--bs-text);
