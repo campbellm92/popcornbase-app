@@ -62,24 +62,27 @@ async function updateUserPassword(id, newPassword) {
 
 // login endpoint (checking user exists)
 async function getUserByEmail(email) {
-  const [rows] = await pool.query(`SELECT * FROM users WHERE email = ?`[email]);
+  const [rows] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
+    email,
+  ]);
   return rows[0];
 }
 
+// possibly redundant:
 // use this or passwordUtils? - BOTH
-async function verifyUserPassword(email, password) {
-  const [row] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
-    email,
-  ]);
-  const user = rows[0];
+// async function verifyUserPassword(email, password) {
+//   const [row] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
+//     email,
+//   ]);
+//   const user = row[0];
 
-  if (!user) {
-    return false;
-  }
+//   if (!user) {
+//     return false;
+//   }
 
-  const passwordMatches = await verifyPassword(user.password, password);
-  return passwordMatches;
-}
+//   const passwordMatches = await verifyPassword(user.password, password);
+//   return passwordMatches;
+// }
 
 module.exports = {
   getAllUsers,
@@ -89,6 +92,6 @@ module.exports = {
   deleteUser,
   userExists,
   updateUserPassword,
-  verifyUserPassword,
+  // verifyUserPassword,
   getUserByEmail,
 };
