@@ -1,4 +1,5 @@
 const pool = require("../config/db");
+const { hashPassword, verifyPassword } = require("../utils/passwordUtils");
 
 async function getAllUsers() {
   const [rows] = await pool.query("SELECT * FROM users");
@@ -10,15 +11,23 @@ async function getUser(id) {
   return row;
 }
 
+// signup endpoint
 async function createUser(email, password) {
-  const result = await pool.query(
-    `INSERT INTO users (email, password)
-      VALUES (?, ?)`,
-    [email, password]
-  );
-  return result;
+  try {
+    const hashedPassword = await hashPassword(password);
+    const result = await pool.query(
+      `INSERT INTO users (email, password)
+        VALUES (?, ?)`,
+      [email, hashedPassword]
+    );
+    return result;
+  } catch (error) {
+    console.error("Error creating user", error);
+    throw error;
+  }
 }
 
+// admin
 async function updateUser(id, email, password) {
   const result = await pool.query(
     `UPDATE users SET email = ?, password = ? WHERE id = ?`,
@@ -27,11 +36,13 @@ async function updateUser(id, email, password) {
   return result;
 }
 
+// admin & user (dashboard)
 async function deleteUser(id) {
   const result = await pool.query(`DELETE FROM users WHERE id = ?`, [id]);
   return result;
 }
 
+// sanitisation (signup endpoint)
 async function userExists(email) {
   const [rows] = await pool.query(
     `SELECT COUNT(*) as count FROM users WHERE email = ?`,
@@ -40,6 +51,7 @@ async function userExists(email) {
   return rows[0].count > 0;
 }
 
+// user (dashboard)
 async function updateUserPassword(id, newPassword) {
   const result = await pool.query(
     `UPDATE users SET password = ? WHERE id = ?`,
@@ -48,14 +60,25 @@ async function updateUserPassword(id, newPassword) {
   return result;
 }
 
+// login endpoint (checking user exists)
+async function getUserByEmail(email) {
+  const [rows] = await pool.query(`SELECT * FROM users WHERE email = ?`[email]);
+  return rows[0];
+}
+
+// use this or passwordUtils? - BOTH
 async function verifyUserPassword(email, password) {
   const [row] = await pool.query(`SELECT * FROM users WHERE email = ?`, [
     email,
   ]);
-  if (row && row.password === password) {
-    return true; // In a real-world application, you would use hashing and comparison
+  const user = rows[0];
+
+  if (!user) {
+    return false;
   }
-  return false;
+
+  const passwordMatches = await verifyPassword(user.password, password);
+  return passwordMatches;
 }
 
 module.exports = {
@@ -67,4 +90,5 @@ module.exports = {
   userExists,
   updateUserPassword,
   verifyUserPassword,
+  getUserByEmail,
 };
