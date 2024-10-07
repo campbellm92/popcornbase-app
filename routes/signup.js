@@ -42,8 +42,7 @@ router.post("/signup", async (req, res) => {
       });
     }
 
-    const hashedPassword = await hashPassword(password);
-    await createUser(email, hashedPassword);
+    await createUser(email, password);
 
     res
       .status(200)
@@ -59,17 +58,5 @@ router.post("/signup", async (req, res) => {
     });
   }
 });
-
-/*
-
-I need to: 
-> set up route for signup - router.post
-> build a query to check if email exists or not (select .. from) DONE
-> make sure email is correct format DONE
-> if email doesn't exist, create new user (insert into) DONE
-> check password strong enough DONE
-> hash password DONE
-> connect to jwt token DONE?
-*/
 
 module.exports = router;
