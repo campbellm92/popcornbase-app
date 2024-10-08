@@ -7,11 +7,11 @@ const { verifyPassword } = require("../utils/passwordUtils");
 
 const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
-router.get("/login", (req, res) => {
+router.get("/", (req, res) => {
   res.render("login");
 });
 
-router.post("/login", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -50,7 +50,7 @@ router.post("/login", async (req, res) => {
 
     res.status(200).render("login", {
       successfulLogin: "Login successful. You'll now be redirected.",
-    });
+    }); //will need to add a redirect
   } catch (error) {
     console.error(error);
     res.status(500).render("login", {
@@ -58,13 +58,5 @@ router.post("/login", async (req, res) => {
     });
   }
 });
-
-// const token = jwt.sign(
-//   { userId: result.insertId, email: email },
-//   JWT_SECRET,
-//   {
-//     expiresIn: "1h",
-//   }
-// );
 
 module.exports = router;
