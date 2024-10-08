@@ -51,7 +51,7 @@ async function userExists(email) {
   return rows[0].count > 0;
 }
 
-// user (dashboard)
+// user (dashboard) NO - admin b/c id -- consider setting up func for user to change pw
 async function updateUserPassword(id, newPassword) {
   const result = await pool.query(
     `UPDATE users SET password = ? WHERE id = ?`,
