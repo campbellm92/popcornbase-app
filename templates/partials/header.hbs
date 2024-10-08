@@ -7,9 +7,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
+                {{#if isAuthenticated}}
+                <a class="nav-link links-custom" href="/logout">Logout</a>
+                {{else}}
                 <a class="nav-link links-custom" href="/signup">Sign
                     up</a>
                 <a class="nav-link links-custom" href="/login">Login</a>
+                {{/if}}
             </div>
         </div>
     </div>
