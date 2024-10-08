@@ -3,20 +3,22 @@ const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
-function authenticateToken(req, res, next) {
+function verifyAuth(req, res, next) {
   const token = req.cookies.authToken || req.header("Authorization");
 
   if (!token) {
-    return res.status(401).json({ message: "Authorization token required." });
+    req.isAuthenticated = false; // isAuthenticated is a JS custom property
+    return next();
   }
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
     req.user = decoded.user;
-    next();
+    req.isAuthenticated = true;
   } catch (error) {
-    return res.status(401).json({ message: "Invalid token." });
+    req.isAuthenticated = false;
   }
+  next();
 }
 
-module.exports = authenticateToken;
+module.exports = verifyAuth;
