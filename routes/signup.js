@@ -2,13 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const { createUser, userExists } = require("../queries/userQueries");
-const { hashPassword } = require("../utils/passwordUtils");
 
-router.get("/signup", (req, res) => {
+router.get("/", (req, res) => {
   res.render("signup");
 });
 
-router.post("/signup", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -47,10 +46,6 @@ router.post("/signup", async (req, res) => {
     res
       .status(200)
       .render("signup", { successfulSignup: "You've successfully signed up!" });
-
-    // setTimeout(() => {
-    //   res.redirect("/");
-    // }, 3000);
   } catch (error) {
     console.error(error);
     res.status(500).render("signup", {
